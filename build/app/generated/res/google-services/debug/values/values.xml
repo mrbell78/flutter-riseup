@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">787470094102-8un268jd46hbsmu4q9eg2uf0ed7humhn.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://masterstudy-app.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">787470094102</string>
+    <string name="google_api_key" translatable="false">AIzaSyCxF3ldM-OC2kXwH83ZlFQfpnxAF65Q2Us</string>
+    <string name="google_app_id" translatable="false">1:787470094102:android:5349b4d65a5ad432844a37</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCxF3ldM-OC2kXwH83ZlFQfpnxAF65Q2Us</string>
+    <string name="google_storage_bucket" translatable="false">masterstudy-app.appspot.com</string>
+    <string name="project_id" translatable="false">masterstudy-app</string>
+</resources>

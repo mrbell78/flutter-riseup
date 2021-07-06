@@ -42,7 +42,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapRegisterEventToState(event) async* {
     yield LoadingAuthState();
     try {
-      await _repository.register(event.login, event.email, event.password);
+      await _repository.register(
+          event.login,
+          event.email,
+          event.password,
+          event.first_name,
+          event.last_name,
+          event.phone,
+          event.gender,
+          event.age,
+          event.designation,
+          event.organization,
+          event.district);
       yield SuccessAuthState();
     } catch (error, stacktrace) {
       var errorData = json.decode(error.response.toString());

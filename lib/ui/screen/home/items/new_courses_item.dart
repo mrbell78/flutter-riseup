@@ -156,7 +156,7 @@ class NewCoursesWidget extends StatelessWidget {
                   thickness: 1.3,
                 ),
               ),
-              Padding(
+           /*   Padding(
                 padding:
                     const EdgeInsets.only(top: 16.0, left: 15.0, right: 16.0),
                 child: Row(
@@ -191,6 +191,7 @@ class NewCoursesWidget extends StatelessWidget {
                 ),
               ),
               _buildPrice(context, price, oldPrice, free)
+              */
             ],
           ),
         ),

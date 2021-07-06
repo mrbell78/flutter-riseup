@@ -90,7 +90,8 @@ class _OverviewWidgetState extends State<OverviewWidget>
               }).toList(),
             ),
             _buildAnnoncement(widget.response.announcement),
-            _buildReviewsStat(widget.response.rating),
+    //comment by imran hide review view and submit system
+    /* _buildReviewsStat(widget.response.rating),
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: new MaterialButton(
@@ -109,7 +110,7 @@ class _OverviewWidgetState extends State<OverviewWidget>
                 ),
                 textColor: Colors.white,
               ),
-            ),
+            ),*/
             _buildReviewList(widget.reviewResponse.posts),
           ],
         ),

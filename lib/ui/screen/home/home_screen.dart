@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inject/inject.dart';
 import 'package:masterstudy_app/ui/bloc/home/bloc.dart';
 import 'package:masterstudy_app/ui/widgets/loading_error_widget.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'items/categories_item.dart';
 import 'items/new_courses_item.dart';
@@ -42,10 +46,15 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, state) {
             return _buildBody(context, state);
           },
-    ));
+        ));
   }
 
   _buildBody(context, state) {
+    _downloadFile(
+            "https://adolescent.nnsop.org/admin-panel/public/storage/module/1604385030C_7.zip",
+            "CourseSAM")
+        .then((value) => {print("File path = " + value.toString())});
+
     if (state is LoadedHomeState) {
       return ListView.builder(
           itemCount: state.layout.length,
@@ -54,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             switch (item.id) {
               case 3:
-                return TrendingWidget(true,item.name,state.coursesTranding);
+                return TrendingWidget(true, item.name, state.coursesTranding);
               case 4:
                 return TopInstructorsWidget(item.name, state.instructors);
               case 1:
@@ -62,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               case 2:
                 return NewCoursesWidget(item.name, state.coursesNew);
               case 5:
-                return TrendingWidget(false,item.name, state.coursesFree);
+                return TrendingWidget(false, item.name, state.coursesFree);
               default:
                 return NewCoursesWidget(item.name, state.coursesNew);
             }
@@ -74,10 +83,40 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
-    if(state is ErrorHomeState){
-      return LoadingErrorWidget((){
+    if (state is ErrorHomeState) {
+      return LoadingErrorWidget(() {
         _bloc.add(FetchEvent());
       });
     }
+  }
+
+  Future<File> _downloadFile(String url, String filename) async {
+    new Directory(filename).create()
+        // The created directory is returned as a Future.
+        .then((Directory directory) async {
+      print("File path dir  = " + directory.path);
+
+      var httpClient = new HttpClient();
+      var request = await httpClient.getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+
+      File file = new File('$directory/');
+      print("File path 1111 = " + file.toString());
+      await file.writeAsBytes(bytes);
+      return file;
+
+    });
+
+    /*var httpClient = new HttpClient();
+    var request = await httpClient.getUrl(Uri.parse(url));
+    var response = await request.close();
+    var bytes = await consolidateHttpClientResponseBytes(response);
+    String dir = (await getApplicationDocumentsDirectory()).path;
+
+    File file = new File('$dir/$filename');
+    print("File path 1111 = " + file.toString());
+    await file.writeAsBytes(bytes);
+    return file;*/
   }
 }

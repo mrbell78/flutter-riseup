@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "G:\\RiseUpLabs_OFFICE\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\res\\merged\\debug\\values-ca\\values-ca.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\imran sk\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "G:\\RiseUpLabs_OFFICE\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ca\\values-ca.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\imran sk\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

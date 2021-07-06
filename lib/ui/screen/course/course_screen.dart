@@ -228,7 +228,8 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                       pinned: true,
                       snap: false,
                       actions: <Widget>[
-                        IconButton(
+                        //comment by imran
+                   /*     IconButton(
                           icon: Icon(Icons.share),
                           onPressed: () {
                             if (state is LoadedCourseState)
@@ -262,7 +263,7 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                                 SearchDetailScreen.routeName,
                                 arguments: SearchDetailScreenArgs(""));
                           },
-                        ),
+                        ),*/
                       ],
                       bottom: ColoredTabBar(
                           Colors.white,
@@ -362,7 +363,8 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                                                 )
                                               ],
                                             ),
-                                            GestureDetector(
+                                      // comment by imran
+                                      /*      GestureDetector(
                                               onTap: () {
                                                 showDialog(
                                                   context: context,
@@ -379,7 +381,7 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                                                         .author.avatar_url
                                                     : "",
                                               )),
-                                            )
+                                            )*/
                                           ],
                                         ),
                                       ),
@@ -403,7 +405,8 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                                             top: 32.0, right: 16.0),
                                         child: Row(
                                           children: <Widget>[
-                                            RatingBar(
+                                            //comment by imran
+                                            /*RatingBar(
                                               initialRating: ratingAverage,
                                               minRating: 0,
                                               allowHalfRating: true,
@@ -430,7 +433,7 @@ class _CourseScreenWidgetState extends State<_CourseScreenWidget>
                                                     color: Colors.white
                                                         .withOpacity(0.5)),
                                               ),
-                                            ),
+                                            ),*/
                                           ],
                                         ),
                                       ),

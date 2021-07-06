@@ -7,7 +7,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class AuthRepository {
   Future authUser(String login, String password);
 
-  Future register(String login, String email, String password);
+  Future register(
+       String login,
+      String email,
+      String password,
+      String first_name,
+      String last_name,
+      String phone,
+      String gender,
+      String age,
+      String designation,
+      String organization,
+      String district);
 
   Future restorePassword(String email);
 
@@ -36,8 +47,28 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future register(String login, String email, String password) async {
-    AuthResponse response = await provider.signUpUser(login, email, password);
+  Future register(String login,
+      String email,
+      String password,
+      String first_name,
+      String last_name,
+      String phone,
+      String gender,
+      String age,
+      String designation,
+      String organization,
+      String district) async {
+    AuthResponse response = await provider.signUpUser( login,
+         email,
+         password,
+         first_name,
+         last_name,
+        phone,
+        gender,
+        age,
+        designation,
+        organization,
+        district);
     _saveToken(response.token);
   }
 

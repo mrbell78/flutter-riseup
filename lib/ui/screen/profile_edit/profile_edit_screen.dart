@@ -55,6 +55,17 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
   TextEditingController _twitterController = TextEditingController();
   TextEditingController _instagramController = TextEditingController();
 
+
+
+  TextEditingController _loginController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _genderController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
+  TextEditingController _designationController = TextEditingController();
+  TextEditingController _organizationController = TextEditingController();
+  TextEditingController _districtController = TextEditingController();
+
+
   var enableInputs = true;
 
   var passwordVisible = false;

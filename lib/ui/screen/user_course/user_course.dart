@@ -15,6 +15,7 @@ import 'package:masterstudy_app/ui/screen/lesson_video/lesson_video_screen.dart'
 import 'package:masterstudy_app/ui/screen/quiz_lesson/quiz_lesson_screen.dart';
 import 'package:masterstudy_app/ui/screen/text_lesson/text_lesson_screen.dart';
 import 'package:masterstudy_app/ui/widgets/loading_error_widget.dart';
+import 'package:masterstudy_app/WebViewClass.dart';
 
 class UserCourseScreenArgs {
   final String course_id;
@@ -348,6 +349,9 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
 
   _openLesson(String type, int id) {
     Future screenFuture = null;
+
+    print("lesson type = $type");
+
     switch (type) {
       case "quiz":
         screenFuture = Navigator.of(context).pushNamed(
@@ -377,6 +381,11 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
               id, widget.args.avatar_url, widget.args.login),
         );
         break;
+      case "slide":
+
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => WebViewClass()));
+
+     break;
       default:
         screenFuture = Navigator.of(context).pushNamed(
           TextLessonScreen.routeName,

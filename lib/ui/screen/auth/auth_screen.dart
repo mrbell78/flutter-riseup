@@ -130,6 +130,14 @@ class _SignUpPageState extends State<_SignUpPage> {
   TextEditingController _loginController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _genderController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
+  TextEditingController _designationController = TextEditingController();
+  TextEditingController _organizationController = TextEditingController();
+  TextEditingController _districtController = TextEditingController();
 
   var passwordVisible = false;
 
@@ -180,7 +188,7 @@ class _SignUpPageState extends State<_SignUpPage> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
                 child: TextFormField(
                   controller: _emailController,
                   enabled: enableInputs,
@@ -227,6 +235,153 @@ class _SignUpPageState extends State<_SignUpPage> {
                   },
                 ),
               ),
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _firstNameController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "First Name",
+                      helperText: "Enter your first name",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your first name";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _lastNameController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Last Name",
+                      helperText: "Enter your last name",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your last name";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _phoneNumberController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Phone Number",
+                      helperText: "Enter your phone number",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your phone number";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _genderController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Gender",
+                      helperText: "",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Write your Gender";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _ageController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Age",
+                      helperText: "Enter your age",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your age";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _designationController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Designation",
+                      helperText: "Enter your designation",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your phone designation";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _organizationController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "Organization",
+                      helperText: "Enter your organization",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your organization";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+                child: TextFormField(
+                  controller: _districtController,
+                  enabled: enableInputs,
+                  decoration: InputDecoration(
+                      labelText: "District",
+                      helperText: "Enter your district",
+                      filled: true),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter your phone district";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
               Padding(
                 padding:
                     const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
@@ -324,8 +479,10 @@ class _SignUpPageState extends State<_SignUpPage> {
 
   void register() {
     if (_formKey.currentState.validate()) {
+      /*_bloc.add(RegisterEvent(_loginController.text, _emailController.text,
+          _passwordController.text));*/
       _bloc.add(RegisterEvent(_loginController.text, _emailController.text,
-          _passwordController.text));
+          _passwordController.text,_firstNameController.text,_lastNameController.text,_phoneNumberController.text,_genderController.text,_ageController.text,_designationController.text,_organizationController.text,_districtController.text));
     }
   }
 

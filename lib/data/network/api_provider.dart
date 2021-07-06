@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:inject/inject.dart';
 import 'package:masterstudy_app/data/models/AddToCartResponse.dart';
 import 'package:masterstudy_app/data/models/AppSettings.dart';
@@ -42,9 +43,35 @@ class UserApiProvider {
   }
 
   Future<AuthResponse> signUpUser(
-      String login, String email, String password) async {
-    Response response = await _dio.post(apiEndpoint + "registration/",
-        data: {"login": login, "email": email, "password": password});
+      String login,
+      String email,
+      String password,
+      String first_name,
+      String last_name,
+      String phone,
+      String gender,
+      String age,
+      String designation,
+      String organization,
+      String district) async {
+    Map<String, String> data = {
+      "login": login,
+      "email": email,
+      "password": password,
+      "first_name": first_name,
+      "last_name": last_name,
+      "phone": phone,
+      "gender": gender,
+      "age": age,
+      "designation": designation,
+      "organization": organization,
+      "district": district,
+      "password_re": password
+    };
+    print("Registration Data = " + data.toString());
+
+    Response response =
+        await _dio.post(apiEndpoint + "registration/", data: data);
     return AuthResponse.fromJson(response.data);
   }
 

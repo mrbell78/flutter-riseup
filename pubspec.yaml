@@ -93,3 +93,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/localization/
+    - assets/module-1-bn/module1-bn.html
+    - assets/module-1-bn/lms.js
+

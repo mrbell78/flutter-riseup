@@ -6,7 +6,7 @@ import 'package:inject.example.train/food.dart';
 import 'package:inject.example.train/locomotive.dart';
 
 void main() {
-  group('locomotive', () {
+  /*group('locomotive', () {
     test('can instantiate TrainServices', () async {
       final services = await TrainServices.create(
         new BikeServices(),
@@ -16,5 +16,5 @@ void main() {
       services.bikeRack;
       services.kitchen;
     });
-  });
+  });*/
 }

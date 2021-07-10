@@ -6,6 +6,7 @@ import 'package:test/test.dart';
 import 'package:inject.example.coffee/coffee_app.dart';
 
 import 'coffee_app_test.inject.dart' as gen;
+/*
 
 List<String> _printLog = <String>[];
 
@@ -67,8 +68,9 @@ abstract class TestCoffee {
   @provide
   CoffeeMaker getCoffeeMaker();
 }
+*/
 
-/// Forwards [print] messages to [_printLog].
+/*/// Forwards [print] messages to [_printLog].
 Function _interceptPrint(testFn()) {
   return () {
     return Zone.current.fork(specification: new ZoneSpecification(
@@ -77,4 +79,4 @@ Function _interceptPrint(testFn()) {
       },
     )).run(testFn);
   };
-}
+}*/

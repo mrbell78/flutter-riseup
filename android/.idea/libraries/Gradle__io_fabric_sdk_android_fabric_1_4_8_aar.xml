@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: io.fabric.sdk.android:fabric:1.4.8@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e82f4758171c11886f08545965e53ae/fabric-1.4.8/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e82f4758171c11886f08545965e53ae/fabric-1.4.8/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e82f4758171c11886f08545965e53ae/fabric-1.4.8/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/56da3abca4db54a1775bca9fe4c51a2c/jetified-fabric-1.4.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/56da3abca4db54a1775bca9fe4c51a2c/jetified-fabric-1.4.8/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/56da3abca4db54a1775bca9fe4c51a2c/jetified-fabric-1.4.8/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

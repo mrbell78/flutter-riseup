@@ -1,3 +1,6 @@
+
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,11 @@ import 'package:masterstudy_app/ui/screen/text_lesson/text_lesson_screen.dart';
 import 'package:masterstudy_app/ui/widgets/loading_error_widget.dart';
 import 'package:masterstudy_app/WebViewClass.dart';
 
+import 'package:flutter/material.dart';
+import 'package:archive/archive.dart';
+import 'package:dio/dio.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 class UserCourseScreenArgs {
   final String course_id;
   final String title;
@@ -97,8 +105,14 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
   ScrollController _scrollController;
   String title = "";
   UserCourseBloc _bloc;
+  String _dir;
+
   var unescape = new HtmlUnescape();
 
+  bool isdownlading=true;
+  List<String> _tfile;
+  String downloadmessage ="offline course";
+  String _zipPathdownloadsource ="https://ncbelearning.fpmu.gov.bd/admin-panel/coursemodule/download/module-1-bn.zip";
   bool get _isAppBarExpanded {
     return _scrollController.hasClients &&
         _scrollController.offset >
@@ -108,7 +122,8 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
   @override
   void initState() {
     super.initState();
-
+    _tfile=new List();
+    _iniDir();
     _bloc = BlocProvider.of<UserCourseBloc>(context)
       ..add(FetchEvent(widget.args));
     _scrollController = ScrollController()
@@ -125,14 +140,71 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
       });
   }
 
+  unarchiiveAndSave(zipedfile) async{
+
+    var bytes = zipedfile.readAsBytesSync();
+    var archime = ZipDecoder().decodeBytes(bytes);
+    for(var file in archime){
+      var filename = "$_dir/${file.name}";
+      if(file.isFile){
+        var outFile = File(filename);
+        print("File:: "+outFile.path);
+        _tfile.add(outFile.path);
+        outFile=await outFile.create(recursive: true);
+        await outFile.writeAsBytes(file.content);
+
+      }
+
+    }
+  }
+
+  void _iniDir()async {
+    if(null==_dir){
+
+
+
+      // _dir = (await getExternalStorageDirectory()).path;
+
+      Directory directory = await getExternalStorageDirectory();
+      _dir =  directory.path;
+      print("the path is ${_dir}");
+
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     num kef = (MediaQuery.of(context).size.height > 690) ? 3.3 : 3;
-
     return BlocBuilder<UserCourseBloc, UserCourseState>(
       bloc: BlocProvider.of(context),
       builder: (context, state) {
         return Scaffold(
+          floatingActionButton: new Visibility(
+              visible: isdownlading?true:false,
+              child:FloatingActionButton.extended(
+
+                onPressed: () async {
+
+                  Dio().download(_zipPathdownloadsource, "$_dir/resources.zip",onReceiveProgress: (actualbytes,totalbytes){
+
+                    var percentize = actualbytes/totalbytes*100;
+                    setState(() {
+
+                      downloadmessage ="Downloading..${percentize.floor()} %";
+                      if(percentize.floor()==100){
+                        isdownlading=false;
+                        downloadmessage="";
+                        unarchiiveAndSave(File("$_dir/resources.zip"));
+                      }
+                    });
+                  });
+                },
+
+                label: Text(downloadmessage),
+              ),
+
+          ),
           body: NestedScrollView(
               controller: _scrollController,
               headerSliverBuilder:
@@ -148,11 +220,15 @@ class UserCourseWidgetState extends State<UserCourseWidget> {
                     floating: false,
                     pinned: true,
                     snap: false,
+
                     flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.parallax,
+
                       background: Container(
                         child: Stack(
                           children: <Widget>[
+
+
                             Hero(
                                 tag: widget.args.course_id,
                                 child: CachedNetworkImage(

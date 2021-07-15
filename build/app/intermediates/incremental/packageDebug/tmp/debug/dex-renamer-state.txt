@@ -1,4 +1,4 @@
-#Sat Jul 10 23:33:26 BDT 2021
-base.0=E\:\\sam-online-flutter-app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Thu Jul 15 12:18:58 BDT 2021
+base.0=E\:\\flutter-riseup\\build\\app\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

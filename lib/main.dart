@@ -50,6 +50,7 @@ import 'package:masterstudy_app/ui/screen/lesson_video/lesson_video_screen.dart'
 import 'package:masterstudy_app/ui/screen/main/main_screen.dart';
 import 'package:masterstudy_app/ui/screen/plans/plans_screen.dart';
 import 'package:masterstudy_app/ui/screen/profile_assignment/profile_assignment_screen.dart';
+import 'package:masterstudy_app/ui/screen/profile_edit/edit-profile-controller.dart';
 import 'package:masterstudy_app/ui/screen/profile_edit/profile_edit_screen.dart';
 import 'package:masterstudy_app/ui/screen/question_ask/question_ask_screen.dart';
 import 'package:masterstudy_app/ui/screen/question_details/question_details_screen.dart';
@@ -69,11 +70,13 @@ import 'package:masterstudy_app/ui/widgets/message_notification.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/cache/cache_manager.dart';
 import 'data/push/push_manager.dart';
 import 'di/app_injector.dart';
+import 'locator/locator.dart';
 import 'ui/screen/orders/orders.dart';
 import 'ui/screen/user_course/user_course.dart';
 
@@ -112,6 +115,8 @@ Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
 Directory appDocDir;
 
 void main() async {
+  await setupLocator();
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarBrightness: Brightness.light,
     statusBarColor: Colors.grey.withOpacity(0.4), //top bar color
@@ -172,6 +177,9 @@ String appLogoUrl;
 
 @provide
 class MyApp extends StatefulWidget {
+
+
+
   final Provider<AuthScreen> authScreen;
   final Provider<HomeBloc> homeBloc;
   final Provider<FavoritesBloc> favoritesBloc;
@@ -241,6 +249,7 @@ class MyApp extends StatefulWidget {
   _getProvidedMainScreen() {
     return MultiBlocProvider(
       providers: [
+
         BlocProvider<HomeBloc>(create: (BuildContext context) => homeBloc()),
         BlocProvider<HomeSimpleBloc>(
             create: (BuildContext context) => homeSimpleBloc()),
@@ -384,6 +393,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     pushStream.listen((event) {
       var message = event as Map<String, dynamic>;
       var notification = message["notification"];

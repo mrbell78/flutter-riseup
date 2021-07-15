@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 class LoggingInterceptors extends Interceptor {
   @override
   Future<dynamic> onRequest(RequestOptions options) async {
-    print(
-        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
+    /*print(
+        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");*/
     print("Headers:");
     options.headers.forEach((k, v) => print('$k: $v'));
     if (options.queryParameters != null) {

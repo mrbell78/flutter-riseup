@@ -1,0 +1,6 @@
+io/flutter/plugins/firebase/crashlytics/firebasecrashlytics/FirebaseCrashlyticsPlugin.java
+ io.flutter.plugins.firebase.crashlytics.firebasecrashlytics.FirebaseCrashlyticsPlugin
+io/flutter/plugins/firebase/crashlytics/firebasecrashlytics/FlutterFirebaseAppRegistrar.java
+ io.flutter.plugins.firebase.crashlytics.firebasecrashlytics.FlutterFirebaseAppRegistrar
+io/flutter/plugins/firebase/crashlytics/firebasecrashlytics/BuildConfig.java
+ io.flutter.plugins.firebase.crashlytics.firebasecrashlytics.BuildConfig

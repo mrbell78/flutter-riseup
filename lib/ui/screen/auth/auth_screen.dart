@@ -53,6 +53,7 @@ class AuthScreenWidgetState extends State<AuthScreenWidget> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
+        backgroundColor: Color(0xffEFFAFF),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(110.0), // here th
           child: new AppBar(
@@ -101,7 +102,7 @@ class AuthScreenWidgetState extends State<AuthScreenWidget> {
         body: TabBarView(
           children: <Widget>[
             ListView(
-              children: <Widget>[_SignUpPage(widget.optionsBean)],
+              children: <Widget>[_SignUpPage()],
             ),
             ListView(children: <Widget>[_SignInPage(widget.optionsBean)]),
           ],
@@ -111,7 +112,7 @@ class AuthScreenWidgetState extends State<AuthScreenWidget> {
   }
 }
 
-class _SignUpPage extends StatefulWidget {
+/*class _SignUpPage extends StatefulWidget {
 
   final OptionsBean optionsBean;
 
@@ -479,8 +480,8 @@ class _SignUpPageState extends State<_SignUpPage> {
 
   void register() {
     if (_formKey.currentState.validate()) {
-      /*_bloc.add(RegisterEvent(_loginController.text, _emailController.text,
-          _passwordController.text));*/
+      *//*_bloc.add(RegisterEvent(_loginController.text, _emailController.text,
+          _passwordController.text));*//*
       _bloc.add(RegisterEvent(_loginController.text, _emailController.text,
           _passwordController.text,_firstNameController.text,_lastNameController.text,_phoneNumberController.text,_genderController.text,_ageController.text,_designationController.text,_organizationController.text,_districtController.text));
     }
@@ -512,6 +513,191 @@ class _SignUpPageState extends State<_SignUpPage> {
 
     // The pattern of the email didn't match the regex above.
     return localizations.getLocalization("email_invalid_error_text");
+  }
+}*/
+
+class _SignUpPage extends StatefulWidget{
+  @override
+  __SignUpPageState createState() => __SignUpPageState();
+}
+
+class __SignUpPageState extends State<_SignUpPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Login".toUpperCase(),style: TextStyle(fontSize: 12,color: Color(0xff7B7B7B)),),
+                SizedBox(
+                  height: 10,
+                ),
+                Container (
+                  height: 45,
+
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        height: 21,
+                        width: 20,
+                        child: Image.asset("assets/icons/ic-message.png",height: 21,width: 20,),
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    style: TextStyle(fontSize: 10.0,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Email".toUpperCase(),style: TextStyle(fontSize: 12,color: Color(0xff7B7B7B)),),
+                SizedBox(
+                  height: 10,
+                ),
+                Container (
+                  height: 45,
+
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        height: 21,
+                        width: 20,
+                        child: Image.asset("aassets/icons/ic-message.png",height: 21,width: 20,),
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    style: TextStyle(fontSize: 10.0,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("password".toUpperCase(),style: TextStyle(fontSize: 12,color: Color(0xff7B7B7B)),),
+                SizedBox(
+                  height: 10,
+                ),
+                Container (
+                  height: 45,
+
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        height: 21,
+                        width: 20,
+                        child: Image.asset("assets/icons/ic-pass-view.png",height: 21,width: 20,),
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    style: TextStyle(fontSize: 10.0,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Re-Tpe-Password".toUpperCase(),style: TextStyle(fontSize: 12,color: Color(0xff7B7B7B)),),
+                SizedBox(
+                  height: 10,
+                ),
+                Container (
+                  height: 45,
+
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        height: 21,
+                        width: 20,
+                        child: Image.asset("assets/icons/ic-pass-view.png",height: 21,width: 20,),
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    style: TextStyle(fontSize: 10.0,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("password".toUpperCase(),style: TextStyle(fontSize: 12,color: Color(0xff7B7B7B)),),
+                SizedBox(
+                  height: 10,
+                ),
+                Container (
+                  height: 45,
+
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Container(
+                        height: 21,
+                        width: 20,
+                        child: Image.asset("assets/icons/ic-pass-view.png",height: 21,width: 20,),
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    style: TextStyle(fontSize: 10.0,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+
   }
 }
 

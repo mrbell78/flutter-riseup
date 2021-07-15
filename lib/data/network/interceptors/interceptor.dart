@@ -11,12 +11,15 @@ import '../../../main.dart';
 class AppInterceptors extends Interceptor {
   @override
   Future<dynamic> onRequest(RequestOptions options) async {
+
+
     if (options.headers.containsKey("requirestoken")) {
       //remove the auxiliary header
       options.headers.remove("requirestoken");
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var header = prefs.get("apiToken");
+
       options.headers.addAll({"token": "$header"});
 
       return options;

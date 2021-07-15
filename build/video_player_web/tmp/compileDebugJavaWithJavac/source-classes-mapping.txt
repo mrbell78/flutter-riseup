@@ -1,0 +1,4 @@
+io/flutter/plugins/video_player_web/BuildConfig.java
+ io.flutter.plugins.video_player_web.BuildConfig
+io/flutter/plugins/video_player_web/VideoPlayerWebPlugin.java
+ io.flutter.plugins.video_player_web.VideoPlayerWebPlugin

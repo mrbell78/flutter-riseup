@@ -1,18 +1,18 @@
 [
     {
-        "merged": "E:\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\layout-v21\\notification_template_custom_big.xml"
+        "merged": "E:\\flutter-riseup\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\608755782417ca83e53f25e3394d3f10\\core-1.1.0\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
-        "merged": "E:\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\layout-v21\\notification_action_tombstone.xml"
+        "merged": "E:\\flutter-riseup\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\608755782417ca83e53f25e3394d3f10\\core-1.1.0\\res\\layout-v21\\notification_action.xml"
     },
     {
-        "merged": "E:\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\layout-v21\\notification_template_icon_group.xml"
+        "merged": "E:\\flutter-riseup\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\608755782417ca83e53f25e3394d3f10\\core-1.1.0\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "E:\\sam-online-flutter-app\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
-        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\bde34a6e3f7abe30ac077766ae1d0b14\\core-1.1.0\\res\\layout-v21\\notification_action.xml"
+        "merged": "E:\\flutter-riseup\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\pm\\.gradle\\caches\\transforms-2\\files-2.1\\608755782417ca83e53f25e3394d3f10\\core-1.1.0\\res\\layout-v21\\notification_action_tombstone.xml"
     }
 ]

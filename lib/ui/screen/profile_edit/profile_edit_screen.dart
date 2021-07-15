@@ -5,12 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:masterstudy_app/api_rubel_portion/api-service/apiservice.dart';
 import 'package:masterstudy_app/data/models/account.dart';
+import 'package:masterstudy_app/locator/locator.dart';
 import 'package:masterstudy_app/main.dart';
+import 'package:masterstudy_app/rb_responsedata/user-profile.dart';
 import 'package:masterstudy_app/theme/theme.dart';
 import 'package:masterstudy_app/ui/bloc/edit_profile_bloc/bloc.dart';
 import 'package:masterstudy_app/ui/bloc/profile/profile_bloc.dart';
 import 'package:masterstudy_app/ui/bloc/profile/profile_event.dart';
+import 'package:masterstudy_app/ui/screen/profile_edit/edit-profile-controller.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfileEditScreenArgs {
   final Account account;
@@ -64,27 +70,53 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
   TextEditingController _designationController = TextEditingController();
   TextEditingController _organizationController = TextEditingController();
   TextEditingController _districtController = TextEditingController();
+  TextEditingController _passwordnew = TextEditingController();
+  TextEditingController _confirmpassword = TextEditingController();
 
 
   var enableInputs = true;
 
   var passwordVisible = false;
 
+  UserProfile userProfile;
+  int radiovalue;
   EditProfileBloc _bloc;
+  EditProfileController coobj;
+  String districvaluechose;
+  String agevaluechose;
+  List<String> listitemDistrict = ["Lakshmipur" ,"Dhaka", "Chattagram","Khulna","Gajipur","maymangsing","tangaile"];
 
+  List<String> listitemage = ["2" ,"3", "4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"];
+
+  var _apiService = locator<ApiService>();
   @override
   void initState() {
-    _bloc = BlocProvider.of<EditProfileBloc>(context);
-    passwordVisible = true;
-    _firstNameController.text = _bloc.account.meta.first_name;
-    _lastNameController.text = _bloc.account.meta.last_name;
-    _emailController.text = _bloc.account.email;
-    _bioController.text = _bloc.account.meta.description;
-    _occupationController.text = _bloc.account.meta.position;
-    _facebookController.text = _bloc.account.meta.facebook;
-    _twitterController.text = _bloc.account.meta.twitter;
-    _instagramController.text = _bloc.account.meta.instagram;
+
+    coobj  = new EditProfileController();
+    radiovalue=0;
+    getUserProfilefull(24.toString());
     super.initState();
+  }
+
+  getUserProfilefull(id) async {
+
+    var apiResponse = await _apiService.getUserProfile(id);
+    if (apiResponse.httpCode == 200) {
+      userProfile = apiResponse.data;
+      setState(() {
+        _firstNameController.text = userProfile.meta.firstName;
+        _lastNameController.text = userProfile.meta.lastName;
+        //districvaluechose=userProfile.meta.district;
+        //agevaluechose=userProfile.meta.age;
+        radiovalue=userProfile.meta.gender=="Male"?0:1;
+        _designationController.text= userProfile.meta.designation;
+        _organizationController.text=userProfile.meta.organization;
+        _phoneNumberController.text=userProfile.meta.phone;
+      });
+      print("the data is ${userProfile.meta.phone}.................yes data found");
+    } else {
+
+    }
   }
 
   _saveForm() {
@@ -99,11 +131,21 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
           _twitterController.text,
           _instagramController.text,
           _image));
+
     }
+  }
+
+  _setradiovlue(int value){
+
+    setState(() {
+
+      radiovalue=value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -231,8 +273,14 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
               controller: _firstNameController,
               enabled: enableInputs,
               decoration: InputDecoration(
-                  labelText: localizations.getLocalization("first_name"),
+                  labelText: "first name",
                   filled: true),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Please Enter your First Name";
+                }
+                return null;
+              },
             ),
           ),
           Padding(
@@ -241,44 +289,61 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
               controller: _lastNameController,
               enabled: enableInputs,
               decoration: InputDecoration(
-                  labelText: localizations.getLocalization("last_name"),
+                  labelText: "last name",
                   filled: true),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Please Enter your Last Name";
+                }
+                return null;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: TextFormField(
-              controller: _occupationController,
+              controller: _phoneNumberController,
               enabled: enableInputs,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                  labelText: localizations.getLocalization("occupation"),
+                  labelText: "phone",
                   filled: true),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Please Enter your Phone Number";
+                }
+                return null;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: TextFormField(
-              controller: _emailController,
+              controller: _designationController,
               enabled: enableInputs,
-              validator: _validateEmail,
+
               decoration: InputDecoration(
-                  labelText: localizations.getLocalization("email_label_text"),
-                  helperText:
-                      localizations.getLocalization("email_helper_text"),
-                  filled: true),
+                  labelText: "Designation",
+
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Please Enter your Designation";
+                }
+                return null;
+              },
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: TextFormField(
-              controller: _passwordController,
+              controller: _passwordnew,
               enabled: enableInputs,
               obscureText: passwordVisible,
               decoration: InputDecoration(
-                  labelText:
-                      localizations.getLocalization("password_label_text"),
-                  helperText: localizations
-                      .getLocalization("password_registration_helper_text"),
+                  labelText:"password",
+
                   filled: true,
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -308,54 +373,150 @@ class _ProfileEditWidgetState extends State<_ProfileEditWidget> {
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: TextFormField(
-              controller: _bioController,
+
+              controller: _confirmpassword,
               enabled: enableInputs,
-              maxLines: 5,
+              obscureText: passwordVisible,
               decoration: InputDecoration(
-                  labelText: localizations.getLocalization("bio"),
-                  helperText: localizations.getLocalization("bio_helper"),
-                  filled: true),
+                  labelText:"Confirm password",
+
+                  filled: true,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        passwordVisible = !passwordVisible;
+                      });
+                    },
+                    color: Theme.of(context).primaryColorDark,
+                  )),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return null;
+                } else {
+                  if (value.length < 8) {
+                    return localizations.getLocalization(
+                        "password_register_characters_count_error_text");
+                  }
+                }
+
+                return null;
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: TextFormField(
-              controller: _facebookController,
+              controller: _organizationController,
               enabled: enableInputs,
+              obscureText: passwordVisible,
               decoration: InputDecoration(
-                  labelText: 'Facebook',
-                  hintText: localizations.getLocalization("enter_url"),
-                  filled: true),
+                  labelText:"organization",
+
+                  filled: true,
+                 ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Please Enter your Organization Name";
+                }
+                return null;
+              },
+
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+            child: Container(
+              child: DropdownButton(
+
+                isExpanded: true,
+                icon: Icon(Icons.arrow_drop_down),
+                hint: Text("Select District"),
+                value: districvaluechose,
+                onChanged: (newvalue){
+                  setState(() {
+                    districvaluechose=newvalue;
+                  });
+              },
+                items: listitemDistrict.map((valueitem){
+                  return DropdownMenuItem(
+                      value: valueitem,
+                      child: Text(valueitem));
+                }).toList(),
+              ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
-            child: TextFormField(
-              controller: _twitterController,
-              enabled: enableInputs,
-              decoration: InputDecoration(
-                  labelText: 'Twitter',
-                  hintText: localizations.getLocalization("enter_url"),
-                  filled: true),
+            child: Container(
+              child: DropdownButton(
+                isExpanded: true,
+                icon: Icon(Icons.arrow_drop_down),
+                hint: Text("your  Age"),
+                value: agevaluechose,
+                onChanged: (newvalue){
+                  setState(() {
+                    agevaluechose=newvalue;
+                  });
+                },
+                items: listitemage.map((valueitem){
+                  return DropdownMenuItem(
+                      value: valueitem,
+                      child: Text(valueitem));
+                }).toList(),
+              ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
-            child: TextFormField(
-              controller: _instagramController,
-              enabled: enableInputs,
-              decoration: InputDecoration(
-                  labelText: 'Instagram',
-                  hintText: localizations.getLocalization("enter_url"),
-                  filled: true),
-            ),
+            child: Container(
+              width: double.infinity,
+              height: 80,
+              child: ButtonBar(
+                alignment:MainAxisAlignment.start ,
+                children: [
+
+                  Text("Gender"),
+                  Radio(
+                    value: 1,
+                    groupValue: radiovalue,
+                    activeColor: Colors.blue,
+                    onChanged: (val){
+                      print("radio $val");
+                      _setradiovlue(val);
+                    },
+                  ),
+                  Text("Male"),
+
+                  Radio(
+                    value: 2,
+                    groupValue: radiovalue,
+                    activeColor: Colors.blue,
+                    onChanged: (val){
+                      print("radio $val");
+                      _setradiovlue(val);
+                    },
+                  ),
+
+                  Text("Female"),
+                ],
+              ),
+            )
           ),
+
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
             child: new MaterialButton(
               minWidth: double.infinity,
               color: mainColor,
               onPressed: () {
+                setState(() {
+                  coobj.EditProfile(_firstNameController.text, _lastNameController.text, _phoneNumberController.text.toString(), radiovalue==1?"male":"female",agevaluechose,
+                      _organizationController.text,districvaluechose, _passwordnew.text, _confirmpassword.text, _designationController.text);
+                });
                 _saveForm();
               },
               child: setUpButtonChild(enableInputs),
